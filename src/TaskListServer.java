@@ -3,7 +3,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class TaskListServer {
     public static void main(String[] args) throws IOException {
@@ -13,10 +13,6 @@ public class TaskListServer {
         DataInputStream in;
 
         ArrayList<String> tasks = new ArrayList();
-
-        tasks.add("Caminar mucho");
-        tasks.add("Nadar mucho");
-
 
         ServerSocket skServer = new ServerSocket(port);
         Socket client = skServer.accept(); //Server accepts the connection with the client
@@ -34,11 +30,15 @@ public class TaskListServer {
                     break;
                 case "R":
                     String newTask = in.readUTF();
-                    tasks.add(newTask);
-                    out.writeUTF("Task added succesfully");
+                    if (newTask.length() <= 120){
+                        tasks.add(newTask);
+                        out.writeUTF("Task added succesfully");
+                    } else {
+                        out.writeUTF("Caracters cannot be more than 120");
+                    }
                     break;
                 case "Q":
-                    out.writeUTF("Adiós cliente, ya te he servido.");
+                    //out.writeUTF("Adiós cliente, ya te he servido.");
                     out.close();
                     in.close();
                     client.close();

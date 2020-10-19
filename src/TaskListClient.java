@@ -23,24 +23,24 @@ public class TaskListClient {
             System.out.println("You are the client, please send a message to the server");
             String clientMessage = scan.nextLine();
 
-            if (clientMessage.equalsIgnoreCase("L")){
-                out.writeUTF("L");
-            } else if (clientMessage.equalsIgnoreCase("R")){
-                out.writeUTF("R");
-                String newTask = scan.nextLine();
-                /*if (newTask.length() > 120){
-                    System.out.println("Texto largo");
-                } else {
+            switch (clientMessage){
+                case "L":
+                    out.writeUTF("L");
+                    break;
+                case "R":
+                    out.writeUTF("R");
+                    String newTask = scan.nextLine();
                     out.writeUTF(newTask);
-                }*/
-                out.writeUTF(newTask);
-            } else if (clientMessage.equalsIgnoreCase("Q")){
-                out.writeUTF("Q");
-                out.close();
-                in.close();
-                skClient.close();
-            } else {
-                out.writeUTF(clientMessage);
+                    break;
+                case "Q":
+                    out.writeUTF("Q");
+                    //in.readUTF();
+                    out.close();
+                    in.close();
+                    skClient.close();
+                    break;
+                default:
+                    out.writeUTF(clientMessage);
             }
 
             System.out.println("Below you can see the message from the server");
