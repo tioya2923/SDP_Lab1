@@ -8,12 +8,11 @@ public class TaskListClient {
     public static void main(String[] args) throws IOException {
 
         Scanner scan = new Scanner(System.in);
-        final String localhost = "127.0.0.1";
-        final int port = 5000;
         DataOutputStream out;
         DataInputStream in;
 
-        Socket skClient = new Socket(localhost, port);
+        Socket skClient = new Socket("127.0.0.1", 5000);
+        //Socket skClient2 = new Socket("127.0.0.1", 5500);
 
 
         while(true){
@@ -38,15 +37,17 @@ public class TaskListClient {
                     out.close();
                     in.close();
                     skClient.close();
+                    skClient = null;
                     break;
                 default:
                     out.writeUTF(clientMessage);
             }
 
-            System.out.println("Below you can see the message from the server");
-            String serverMessage = in.readUTF();
-            System.out.println(serverMessage);
-
+            if (skClient != null){
+                System.out.println("Below you can see the message from the server");
+                String serverMessage = in.readUTF();
+                System.out.println(serverMessage);
+            }
         }
     }
 }

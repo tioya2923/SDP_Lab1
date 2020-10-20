@@ -38,13 +38,12 @@ public class TaskListServer {
                     }
                     break;
                 case "Q":
-                    //out.writeUTF("Adiós cliente, ya te he servido.");
                     out.close();
                     in.close();
                     client.close();
                     break;
                 default:
-                    out.writeUTF("Cliente, esa opción no es válida.");
+                    out.writeUTF("This option is not valid");
             }
         }
     }
