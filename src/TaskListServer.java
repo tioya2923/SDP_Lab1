@@ -8,13 +8,12 @@ import java.util.Arrays;
 public class TaskListServer {
     public static void main(String[] args) throws IOException {
 
-        final int port = 5000;
         DataOutputStream out;
         DataInputStream in;
 
         ArrayList<String> tasks = new ArrayList();
 
-        ServerSocket skServer = new ServerSocket(port);
+        ServerSocket skServer = new ServerSocket(5000);
         Socket client = skServer.accept(); //Server accepts the connection with the client
 
         while (true) {
