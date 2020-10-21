@@ -34,7 +34,7 @@ public class TaskListServer {
                         tasks.add(newTask);
                         out.writeUTF("Task added succesfully");
                     } else {
-                        out.writeUTF("Caracters cannot be more than 120");
+                        out.writeUTF("Caracters cannot be over than 120");
                     }
                     break;
                 case "Q":
@@ -44,6 +44,10 @@ public class TaskListServer {
                     break;
                 default:
                     out.writeUTF("This option is not valid");
+            }
+            if (clientMessage.equals("Q")){ //Needed to quit the while loop and finish without exceptions erros
+                //System.out.println("Server is closed");
+                break;
             }
         }
     }
