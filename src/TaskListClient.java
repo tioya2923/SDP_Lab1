@@ -11,25 +11,24 @@ public class TaskListClient {
         DataInputStream in;
 
         Socket skClient = new Socket("127.0.0.1", 5000);
-        //Socket skClient2 = new Socket("127.0.0.1", 5500);
 
 
         while(true){
             out = new DataOutputStream(skClient.getOutputStream());
             in = new DataInputStream(skClient.getInputStream());
 
-            System.out.println("You are the client, please send a message to the server");
+            System.out.println("You are the first client, please send a message to the server");
             String clientMessage = scan.nextLine();
 
             switch (clientMessage){
                 case "L":
                     out.writeUTF("L");
                     break;
-                case "R":
+              /*  case "R":
                     out.writeUTF("R");
                     String newTask = scan.nextLine();
                     out.writeUTF(newTask);
-                    break;
+                    break;*/
                 case "Q":
                     out.writeUTF("Q");
                     out.close();
@@ -46,7 +45,7 @@ public class TaskListClient {
                 String serverMessage = in.readUTF();
                 System.out.println(serverMessage);
             } else {
-                break; //Needed to quit the while loop and finish without exceptions erros
+                break; //Needed to quit the while loop and finish without exception erros
             }
         }
     }
