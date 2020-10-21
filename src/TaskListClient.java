@@ -33,7 +33,6 @@ public class TaskListClient {
                     break;
                 case "Q":
                     out.writeUTF("Q");
-                    //in.readUTF();
                     out.close();
                     in.close();
                     skClient.close();
@@ -47,6 +46,8 @@ public class TaskListClient {
                 System.out.println("Below you can see the message from the server");
                 String serverMessage = in.readUTF();
                 System.out.println(serverMessage);
+            } else {
+                break; //Needed to quit the while loop and finish without exceptions erros
             }
         }
     }
