@@ -11,8 +11,6 @@ public class TaskListClient {
         DataInputStream in;
 
         Socket skClient = new Socket("127.0.0.1", 5000);
-        //Socket skClient2 = new Socket("127.0.0.1", 5500);
-
 
         while(true){
             out = new DataOutputStream(skClient.getOutputStream());
