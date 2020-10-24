@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class TaskListServer {
     public static void main(String[] args) throws IOException {
         ArrayList<String> tasks = new ArrayList();
-        ServerSocket skServer = new ServerSocket(5000);
+        ServerSocket skServer = new ServerSocket(5090);
 
         while (true) {
             Socket client = null;
@@ -25,8 +25,20 @@ public class TaskListServer {
                 client.close();
                 e.printStackTrace();
             }
+
+            try {
+                skServer.close();
+           }catch (IOException e) {
+                System.out.println("Não foi possível fechar o Servidor");
+                System.out.println(-1);
+            }
+            break;
+
         }
+
+
     }
+
 }
 
 class ClientHandler extends Thread {
