@@ -26,6 +26,13 @@ public class TaskListServer {
                 e.printStackTrace();
             }
         }
+        try {
+                skServer.close();
+           }catch (IOException e) {
+                System.out.println("Não foi possível fechar o Servidor");
+                System.out.println(-1);
+            }
+            break;
     }
 }
 
